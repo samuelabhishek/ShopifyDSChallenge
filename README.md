@@ -5,6 +5,7 @@ by Samuel Abhishek Jebakumar
 * TOC
 {:toc}
 
+# Question 1
 
 ### 1) Importing Data and Dependancies
 
@@ -693,7 +694,7 @@ fig10.show('png')
 
 Promotional campaigns and deals could be designed based on peak shopping days and hours.
 
-## Question 2
+# Question 2
 
 a) How many orders were shipped by Speedy Express in total?
 
