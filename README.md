@@ -2,6 +2,10 @@
 
 by Samuel Abhishek Jebakumar
 
+* TOC
+{:toc}
+
+
 ### 1) Importing Data and Dependancies
 
 We start our analysis by importing the required dependacies after installing them into our virtual environment.
