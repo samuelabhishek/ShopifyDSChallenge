@@ -692,3 +692,82 @@ fig10.show('png')
 * Peak shopping hours are (4am - 9am), 2pm and 11pm
 
 Promotional campaigns and deals could be designed based on peak shopping days and hours.
+
+## Question 2
+
+a) How many orders were shipped by Speedy Express in total?
+
+Answer: 54
+
+
+```sql
+## Query
+
+
+SELECT ShipperName, COUNT(DISTINCT OrderID) AS NumberOfOrders
+FROM Orders o
+LEFT JOIN
+Shippers s
+ON o.ShipperID = s.ShipperID
+GROUP BY ShipperName
+HAVING ShipperName = 'Speedy Express';
+```
+
+b) What is the last name of the employee with the most orders?
+
+Answer: 40
+
+
+```sql
+#Query
+
+SELECT LastName, COUNT(DISTINCT OrderID) AS NumberOfOrders
+FROM Orders o
+LEFT JOIN
+Employees e
+ON o.EmployeeID = e.EmployeeID
+GROUP BY e.EmployeeID
+ORDER BY NumberOfOrders DESC
+LIMIT 1;
+```
+
+c) What product was ordered the most by customers in Germany?
+
+Answer:
+
+1.	Product present in highest number of orders - Gorgonzola Telino (5 orders)
+
+2.	Product with highest total quantity sold - Boston Crab Meat (160 units)
+
+
+
+```sql
+# Query 1 (Highest Number of Orders)
+
+SELECT p.ProductName, COUNT(DISTINCT o.OrderID) AS NumberOfOrders, SUM(od.Quantity) AS TotalQuantity, c.Country
+FROM Orders o
+LEFT JOIN OrderDetails od
+ON o.OrderID = od.OrderID
+LEFT JOIN Products p
+ON od.ProductID = p.ProductID
+LEFT JOIN Customers c
+ON o.CustomerID = c.CustomerID
+WHERE c.Country = 'Germany'
+GROUP BY p.ProductID
+ORDER BY NumberOfOrders DESC;
+
+
+# Query 2 (Highest Total Quantity Sold)
+
+SELECT p.ProductName, COUNT(DISTINCT o.OrderID) AS NumberOfOrders, SUM(od.Quantity) AS TotalQuantity, c.Country
+FROM Orders o
+LEFT JOIN OrderDetails od
+ON o.OrderID = od.OrderID
+LEFT JOIN Products p
+ON od.ProductID = p.ProductID
+LEFT JOIN Customers c
+ON o.CustomerID = c.CustomerID
+WHERE c.Country = 'Germany'
+GROUP BY p.ProductID
+ORDER BY TotalQuantity DESC;
+```
