@@ -323,7 +323,7 @@ Next we can try and visualize each order in the form of a scatter plot
 
 
 ```python
-fig1 = px.scatter(exp_data, x = 'created_at', y = 'order_amount', color = 'shop_id')
+fig1 = px.scatter(exp_data, x = 'created_at', y = 'order_amount', color = 'shop_id', text = 'user_id')
 fig1.show('png')
 ```
 
@@ -333,7 +333,7 @@ fig1.show('png')
     
 
 
-There are several high-value outliers in the dataset. All observed high-value orders of $704,000 have taken place in shop 42.
+There are several high-value outliers in the dataset. All observed high-value orders of $704,000 have taken place in shop 42 by user_id 604.
 
 Shop 78 too has recorded a number of high-value orders throughout the month of March
 
@@ -501,7 +501,7 @@ norm_data.groupby('shop_id', as_index = False).mean()[['shop_id', 'unit_amount']
 * The data contains outlier transactions from stores 42 and 78
 * Store 42: 
     * Sneakers priced at $352
-    * Over 2000 units of sneakers sold in a single order in some cases
+    * Over 2000 units of sneakers sold in a single order by user_id '604'.
 * Store 78:
     * Sneakers priced at $25,725
     * upto 6 sneakers sold in a single order
